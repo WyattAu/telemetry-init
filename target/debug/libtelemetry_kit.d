@@ -1,0 +1,1 @@
+/tmp/opencode/telemetry-kit/target/debug/libtelemetry_kit.rlib: /tmp/opencode/telemetry-kit/target/package/telemetry-kit-0.1.0/src/config.rs /tmp/opencode/telemetry-kit/target/package/telemetry-kit-0.1.0/src/error.rs /tmp/opencode/telemetry-kit/target/package/telemetry-kit-0.1.0/src/lib.rs /tmp/opencode/telemetry-kit/target/package/telemetry-kit-0.1.0/src/telemetry.rs

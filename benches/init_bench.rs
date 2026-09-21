@@ -8,7 +8,7 @@
 
 use criterion::{criterion_group, criterion_main, Criterion};
 use std::hint::black_box;
-use telemetry_kit::{build_subscriber, LogFormat, TelemetryConfig};
+use telemetry_init::{build_subscriber, LogFormat, TelemetryConfig};
 
 fn bench_init_pretty(c: &mut Criterion) {
     let config = TelemetryConfig::new("bench-svc").log_format(LogFormat::Pretty);

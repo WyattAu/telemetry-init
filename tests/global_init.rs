@@ -11,7 +11,7 @@
 //! function avoids both the race and cross-test log pollution; the
 //! process dies with the test, so no other binary is affected.
 
-use telemetry_kit::{LogFormat, Telemetry, TelemetryConfig, TelemetryError};
+use telemetry_init::{LogFormat, Telemetry, TelemetryConfig, TelemetryError};
 
 /// The full bootstrap → double-init → metrics surface → shutdown → drop
 /// lifecycle, in the exact order a service would exercise it.
@@ -54,7 +54,7 @@ fn full_lifecycle_in_one_deterministic_test() {
 
     // 5. Events flow through the installed global subscriber (smoke: the
     //    stack is live and must not panic on the hot path).
-    tracing::info!("telemetry-kit integration event");
+    tracing::info!("telemetry-init integration event");
 
     // 6. Shutdown is idempotent: Ok on the first call, Ok on every later
     //    call.

@@ -1,11 +1,11 @@
 [package]
-name = "telemetry-kit"
+name = "telemetry-init"
 version = "0.1.0"
 edition = "2021"
 rust-version = "1.85"
 description = "One-call observability bootstrap for Rust services — tracing + metrics + OTLP wired with estate defaults"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/WyattAu/telemetry-kit"
+repository = "https://github.com/WyattAu/telemetry-init"
 keywords = ["telemetry", "tracing", "observability", "opentelemetry", "metrics"]
 categories = ["development-tools::profiling"]
 exclude = [".github/", "benches/"]

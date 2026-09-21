@@ -3,7 +3,7 @@
 //! hold in a separate compilation unit (e.g. `#[non_exhaustive]` is
 //! invisible inside the defining crate).
 
-use telemetry_kit::TelemetryError;
+use telemetry_init::TelemetryError;
 
 #[test]
 fn non_exhaustive_error_forces_a_downstream_wildcard() {

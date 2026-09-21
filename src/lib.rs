@@ -1,6 +1,6 @@
 //! One-call observability bootstrap for Rust services.
 //!
-//! `telemetry-kit` replaces the estate's hand-wired
+//! `telemetry-init` replaces the estate's hand-wired
 //! `tracing_subscriber` + `otelkit` + `metrics-kit` init blocks (~40–80
 //! lines each, six dialects) with a single fallible call that wires, in
 //! estate-default shape:
@@ -35,7 +35,7 @@
 //! # Example
 //!
 //! ```
-//! use telemetry_kit::{LogFormat, Telemetry, TelemetryConfig};
+//! use telemetry_init::{LogFormat, Telemetry, TelemetryConfig};
 //!
 //! let telemetry = Telemetry::init(
 //!     TelemetryConfig::new("payments-api")
@@ -47,7 +47,7 @@
 //! tracing::info!("service started");
 //!
 //! telemetry.shutdown()?;
-//! # Ok::<(), telemetry_kit::TelemetryError>(())
+//! # Ok::<(), telemetry_init::TelemetryError>(())
 //! ```
 //!
 //! # Metrics
@@ -58,7 +58,7 @@
 //! ```
 //! # #[cfg(feature = "metrics")]
 //! # {
-//! use telemetry_kit::{Telemetry, TelemetryConfig};
+//! use telemetry_init::{Telemetry, TelemetryConfig};
 //!
 //! let telemetry = Telemetry::init(
 //!     TelemetryConfig::new("payments-api").metrics_budget(4096),
@@ -73,7 +73,7 @@
 //! assert!(telemetry.metrics().render().contains("http_requests_total 1"));
 //! telemetry.shutdown()?;
 //! # }
-//! # Ok::<(), telemetry_kit::TelemetryError>(())
+//! # Ok::<(), telemetry_init::TelemetryError>(())
 //! ```
 //!
 //! # Traces (feature `otlp`)
@@ -91,7 +91,7 @@
 //! `otelkit` v2's public API is a whole-subscriber init: `otelkit::init`
 //! installs its own global subscriber and returns a flush guard. It
 //! cannot compose as a layer inside this crate's single subscriber, and
-//! its OTLP path ignores the log format and `RUST_LOG`. telemetry-kit
+//! its OTLP path ignores the log format and `RUST_LOG`. telemetry-init
 //! therefore wires `opentelemetry-otlp` + `tracing-opentelemetry`
 //! directly, keeping one code path for every feature combination.
 //!

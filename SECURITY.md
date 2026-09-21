@@ -1,4 +1,4 @@
-# Security Policy — telemetry-kit
+# Security Policy — telemetry-init
 
 ## Supported versions
 
@@ -18,7 +18,7 @@ patch ships.
 
 ## Scope notes
 
-`telemetry-kit` installs the logging/metrics/tracing stack for a process.
+`telemetry-init` installs the logging/metrics/tracing stack for a process.
 Security considerations for integrators:
 
 - **Logs are a data-leak channel.** The JSON/pretty `fmt` layer writes
@@ -41,4 +41,4 @@ Security considerations for integrators:
 - `#![forbid(unsafe_code)]` — no unsafe blocks exist in this crate.
 
 [GitHub security advisories]:
-    https://github.com/WyattAu/telemetry-kit/security/advisories/new
+    https://github.com/WyattAu/telemetry-init/security/advisories/new

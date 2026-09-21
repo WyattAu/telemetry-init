@@ -1072,7 +1072,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "telemetry-kit"
+name = "telemetry-init"
 version = "0.1.0"
 dependencies = [
  "criterion",

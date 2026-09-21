@@ -1,4 +1,4 @@
-# telemetry-kit
+# telemetry-init
 
 One-call observability bootstrap for Rust — the shared init pattern of the
 WyattAu estate, wiring **logs** (`tracing_subscriber`), **metrics**
@@ -25,13 +25,13 @@ call instead of six hand-rolled dialects of the same 40–80 lines.
 
 ```toml
 [dependencies]
-telemetry-kit = "0.1"
+telemetry-init = "0.1"
 ```
 
 ## Example
 
 ```rust
-use telemetry_kit::{Telemetry, TelemetryConfig};
+use telemetry_init::{Telemetry, TelemetryConfig};
 
 let telemetry = Telemetry::init(
     TelemetryConfig::new("payments-api")
@@ -47,14 +47,14 @@ requests.inc();
 
 assert!(telemetry.metrics().render().contains("http_requests_total 1"));
 telemetry.shutdown()?;
-# Ok::<(), telemetry_kit::TelemetryError>(())
+# Ok::<(), telemetry_init::TelemetryError>(())
 ```
 
 With traces enabled:
 
 ```toml
 [dependencies]
-telemetry-kit = { version = "0.1", features = ["otlp"] }
+telemetry-init = { version = "0.1", features = ["otlp"] }
 ```
 
 ```rust,ignore
@@ -96,7 +96,7 @@ infrastructure — point it at your collector, not the public internet.
 `otelkit` v2 exposes a whole-subscriber init: it installs its own global
 subscriber and returns a flush guard, so it cannot compose as a layer inside
 this crate's single subscriber — and its OTLP path ignores the log format and
-`RUST_LOG`. telemetry-kit wires `opentelemetry-otlp` +
+`RUST_LOG`. telemetry-init wires `opentelemetry-otlp` +
 `tracing-opentelemetry` directly to keep one code path for every feature
 combination.
 
