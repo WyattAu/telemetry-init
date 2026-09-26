@@ -321,6 +321,8 @@ mod tests {
     #[cfg(not(feature = "otlp"))]
     fn raw_telemetry() -> Telemetry {
         Telemetry {
+            #[cfg(feature = "metrics")]
+            metrics: Arc::new(metrics_kit::Registry::new()),
             shutdown: AtomicBool::new(false),
         }
     }
