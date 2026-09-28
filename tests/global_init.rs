@@ -11,7 +11,9 @@
 //! function avoids both the race and cross-test log pollution; the
 //! process dies with the test, so no other binary is affected.
 
-use telemetry_init::{LogFormat, Telemetry, TelemetryConfig, TelemetryError};
+use telemetry_init::{effective_max_level, LogFormat, Telemetry, TelemetryConfig, TelemetryError};
+use tracing::level_filters::LevelFilter;
+use tracing::Subscriber as _;
 
 /// The full bootstrap → double-init → metrics surface → shutdown → drop
 /// lifecycle, in the exact order a service would exercise it.
@@ -79,4 +81,22 @@ fn public_builder_chain_is_fully_chainable() {
     // Construction only: every init call lives in the single lifecycle
     // test above so the global subscriber is never raced.
     let _ = cfg;
+}
+
+// ── 0.1.1: Subscriber Debug + effective_max_level ──────────────────────
+
+#[test]
+fn debug_impl_on_subscriber_result_does_not_panic() {
+    use tracing::Subscriber as _;
+    let config = TelemetryConfig::new("dbg-svc");
+    let sub = telemetry_init::build_subscriber(&config).expect("build");
+    // The whole point of the newtype: unwrap/expect ergonomics compile.
+    let debug = format!("{sub:?}");
+    assert!(debug.contains("Subscriber"), "got: {debug}");
+}
+
+#[test]
+fn effective_max_level_respects_rust_log_override() {
+    let config = TelemetryConfig::new("lvl-svc").log_level("warn");
+    assert_eq!(effective_max_level(&config), Some(LevelFilter::WARN));
 }

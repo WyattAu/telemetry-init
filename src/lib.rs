@@ -118,4 +118,4 @@ pub use config::{
     LogFormat, TelemetryConfig, DEFAULT_LOG_LEVEL, DEFAULT_SAMPLE_RATE, DEFAULT_SERVICE_VERSION,
 };
 pub use error::TelemetryError;
-pub use telemetry::{build_subscriber, Telemetry};
+pub use telemetry::{build_subscriber, effective_max_level, Subscriber, Telemetry};

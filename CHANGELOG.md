@@ -3,6 +3,18 @@
 All notable changes to this project are documented here. Format: [Keep a
 Changelog](https://keepachangelog.com/) — versions follow [semver](https://semver.org).
 
+## [0.1.1] - 2026-09-28
+
+### Added
+- `Subscriber` newtype (real `Debug`, forwards `max_level_hint`) so hosts
+  get `unwrap`/`unwrap_err` ergonomics on `build_subscriber` results.
+- `effective_max_level(config)` — the max verbosity init would install,
+  honoring `RUST_LOG`.
+
+### Fixed
+- `Subscriber` forwards `max_level_hint` (the trait default under-reports
+  the installed filter).
+
 ## [0.1.0] - 2026-09-19
 
 ### Added

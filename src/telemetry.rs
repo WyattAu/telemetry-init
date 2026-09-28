@@ -5,7 +5,7 @@ use std::sync::atomic::{AtomicBool, Ordering};
 #[cfg(feature = "metrics")]
 use std::sync::Arc;
 
-use tracing::Subscriber;
+use tracing::Subscriber as _SubscriberTrait;
 use tracing_subscriber::layer::{Layer, SubscriberExt};
 use tracing_subscriber::{fmt, EnvFilter};
 
@@ -172,10 +172,86 @@ impl Drop for Telemetry {
 ///
 /// Same conditions as [`Telemetry::init`] minus
 /// [`TelemetryError::AlreadyInitialized`] (nothing global is touched).
-pub fn build_subscriber(
+pub fn build_subscriber(config: &TelemetryConfig) -> Result<Subscriber, TelemetryError> {
+    build_pipeline(config).map(|(subscriber, _)| Subscriber(subscriber))
+}
+
+/// A boxed [`Subscriber`] with a real `Debug` impl (the diagnostics
+/// matter; the subscriber's innards do not).
+///
+/// Exists because hosts that assert on [`build_subscriber`] results need
+/// `unwrap()`/`unwrap_err()` ergonomics, which require the ok/error types
+/// to be `Debug` — a bare `Box<dyn Subscriber>` is not.
+pub struct Subscriber(Box<dyn _SubscriberTrait + Send + Sync>);
+
+impl std::fmt::Debug for Subscriber {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        // The inner subscriber has no Debug bound; the honest diagnostic is
+        // that a subscriber is present.
+        f.debug_tuple("Subscriber").field(&"[subscriber]").finish()
+    }
+}
+
+impl _SubscriberTrait for Subscriber {
+    fn enabled(&self, metadata: &tracing::Metadata<'_>) -> bool {
+        self.0.enabled(metadata)
+    }
+
+    fn new_span(&self, span: &tracing::span::Attributes<'_>) -> tracing::span::Id {
+        self.0.new_span(span)
+    }
+
+    fn record(&self, span: &tracing::span::Id, values: &tracing::span::Record<'_>) {
+        self.0.record(span, values)
+    }
+
+    fn record_follows_from(&self, span: &tracing::span::Id, follows: &tracing::span::Id) {
+        self.0.record_follows_from(span, follows)
+    }
+
+    fn event(&self, event: &tracing::Event<'_>) {
+        self.0.event(event)
+    }
+
+    fn enter(&self, span: &tracing::span::Id) {
+        self.0.enter(span)
+    }
+
+    fn exit(&self, span: &tracing::span::Id) {
+        self.0.exit(span)
+    }
+
+    fn clone_span(&self, span: &tracing::span::Id) -> tracing::span::Id {
+        self.0.clone_span(span)
+    }
+
+    fn try_close(&self, id: tracing::span::Id) -> bool {
+        self.0.try_close(id)
+    }
+
+    fn current_span(&self) -> tracing_core::span::Current {
+        self.0.current_span()
+    }
+
+    // Forwarded explicitly: the trait default returns `None`, which would
+    // under-report the installed filter to any host introspecting it.
+    fn max_level_hint(&self) -> Option<tracing::level_filters::LevelFilter> {
+        self.0.max_level_hint()
+    }
+}
+
+/// The effective max verbosity [`Telemetry::init`] would install for
+/// `config`, honoring the `RUST_LOG` override. Round-4 estate feedback:
+/// lets hosts verify filter configuration without installing anything.
+///
+/// Returns `None` when the resolved filter declares no maximum level
+/// (e.g. a bare per-target directive with no global level).
+#[must_use]
+pub fn effective_max_level(
     config: &TelemetryConfig,
-) -> Result<Box<dyn Subscriber + Send + Sync>, TelemetryError> {
-    build_pipeline(config).map(|(subscriber, _)| subscriber)
+) -> Option<tracing::level_filters::LevelFilter> {
+    let filter = resolve_filter(config).ok()?;
+    filter.max_level_hint()
 }
 
 /// Build the effective `env-filter` from config: `RUST_LOG` wins when set
@@ -200,7 +276,13 @@ pub(crate) fn build_filter(directive: &str) -> Result<EnvFilter, TelemetryError>
 /// flush/shutdown ownership.
 fn build_pipeline(
     config: &TelemetryConfig,
-) -> Result<(Box<dyn Subscriber + Send + Sync>, Option<OtelProvider>), TelemetryError> {
+) -> Result<
+    (
+        Box<dyn _SubscriberTrait + Send + Sync>,
+        Option<OtelProvider>,
+    ),
+    TelemetryError,
+> {
     let filter = resolve_filter(config)?;
 
     #[cfg(not(feature = "otlp"))]
@@ -235,7 +317,7 @@ fn build_pipeline(
 #[allow(clippy::unnecessary_wraps)]
 fn build_fmt_layer<S>(format: LogFormat) -> Result<Box<dyn Layer<S> + Send + Sync>, TelemetryError>
 where
-    S: Subscriber + for<'a> tracing_subscriber::registry::LookupSpan<'a>,
+    S: tracing::Subscriber + for<'a> tracing_subscriber::registry::LookupSpan<'a>,
 {
     match format {
         LogFormat::Json => {

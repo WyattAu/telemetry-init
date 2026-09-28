@@ -1,6 +1,6 @@
 [package]
 name = "telemetry-init"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 rust-version = "1.85"
 description = "One-call observability bootstrap for Rust services — tracing + metrics + OTLP wired with estate defaults"
@@ -29,6 +29,7 @@ otlp = [
 metrics-kit = { version = "0.1", optional = true }
 thiserror = "2"
 tracing = "0.1"
+tracing-core = "0.1"
 tracing-subscriber = { version = "0.3", default-features = false, features = [
   "fmt",
   "registry",
