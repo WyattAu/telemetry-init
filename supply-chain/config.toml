@@ -36,10 +36,6 @@ version = "1.5.1"
 criteria = "safe-to-run"
 
 [[exemptions.base64]]
-version = "0.22.1"
-criteria = "safe-to-deploy"
-
-[[exemptions.base64]]
 version = "0.23.1"
 criteria = "safe-to-deploy"
 
