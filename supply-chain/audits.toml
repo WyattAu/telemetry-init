@@ -1,8 +1,6 @@
 
 # cargo-vet audits file
 
-[audits]
-
 [[audits.hyper-util]]
 criteria = "safe-to-run"
 version = "0.1.21"
@@ -17,6 +15,11 @@ notes = "Fresh release; peer imports carry no certification yet (imports.lock re
 criteria = "safe-to-run"
 version = "1.16.2"
 notes = "Fresh release; peer imports carry no certification yet (imports.lock refreshed 2026-09-28). Runtime-exposed where the otlp/metrics features are enabled; re-check peer aggregates on the next refresh."
+
+[[audits.telemetry-init]]
+criteria = "safe-to-deploy"
+version = "0.1.1"
+notes = "WyattAu first-party crate; reviewed as the original in-tree implementation."
 
 [[audits.telemetry-init]]
 criteria = "safe-to-run"
@@ -72,8 +75,3 @@ notes = "Fresh release; peer imports carry no certification yet (imports.lock re
 criteria = "safe-to-run"
 version = "0.8.59"
 notes = "Fresh release; peer imports carry no certification yet (imports.lock refreshed 2026-09-28). Runtime-exposed where the otlp/metrics features are enabled; re-check peer aggregates on the next refresh."
-
-[[audits.telemetry-init]]
-criteria = "safe-to-deploy"
-version = "0.1.1"
-notes = "WyattAu first-party crate; reviewed as the original in-tree implementation."
