@@ -1,21 +1,6 @@
 
 # cargo-vet audits file
 
-[[audits.hyper-util]]
-criteria = "safe-to-run"
-version = "0.1.21"
-notes = "Fresh release; peer imports carry no certification yet (imports.lock refreshed 2026-09-28). Runtime-exposed where the otlp/metrics features are enabled; re-check peer aggregates on the next refresh."
-
-[[audits.js-sys]]
-criteria = "safe-to-run"
-version = "0.3.106"
-notes = "Fresh release; peer imports carry no certification yet (imports.lock refreshed 2026-09-28). Runtime-exposed where the otlp/metrics features are enabled; re-check peer aggregates on the next refresh."
-
-[[audits.smallvec]]
-criteria = "safe-to-run"
-version = "1.16.2"
-notes = "Fresh release; peer imports carry no certification yet (imports.lock refreshed 2026-09-28). Runtime-exposed where the otlp/metrics features are enabled; re-check peer aggregates on the next refresh."
-
 [[audits.telemetry-init]]
 criteria = "safe-to-deploy"
 version = "0.1.1"
@@ -25,53 +10,3 @@ notes = "WyattAu first-party crate; reviewed as the original in-tree implementat
 criteria = "safe-to-run"
 version = "0.1.1"
 notes = "WyattAu first-party crate; reviewed as the original in-tree implementation."
-
-[[audits.thiserror]]
-criteria = "safe-to-run"
-version = "2.0.21"
-notes = "Fresh release; peer imports carry no certification yet (imports.lock refreshed 2026-09-28). Runtime-exposed where the otlp/metrics features are enabled; re-check peer aggregates on the next refresh."
-
-[[audits.thiserror-impl]]
-criteria = "safe-to-run"
-version = "2.0.21"
-notes = "Fresh release; peer imports carry no certification yet (imports.lock refreshed 2026-09-28). Runtime-exposed where the otlp/metrics features are enabled; re-check peer aggregates on the next refresh."
-
-[[audits.wasm-bindgen]]
-criteria = "safe-to-run"
-version = "0.2.129"
-notes = "Fresh release; peer imports carry no certification yet (imports.lock refreshed 2026-09-28). Runtime-exposed where the otlp/metrics features are enabled; re-check peer aggregates on the next refresh."
-
-[[audits.wasm-bindgen-futures]]
-criteria = "safe-to-run"
-version = "0.4.79"
-notes = "Fresh release; peer imports carry no certification yet (imports.lock refreshed 2026-09-28). Runtime-exposed where the otlp/metrics features are enabled; re-check peer aggregates on the next refresh."
-
-[[audits.wasm-bindgen-macro]]
-criteria = "safe-to-run"
-version = "0.2.129"
-notes = "Fresh release; peer imports carry no certification yet (imports.lock refreshed 2026-09-28). Runtime-exposed where the otlp/metrics features are enabled; re-check peer aggregates on the next refresh."
-
-[[audits.wasm-bindgen-macro-support]]
-criteria = "safe-to-run"
-version = "0.2.129"
-notes = "Fresh release; peer imports carry no certification yet (imports.lock refreshed 2026-09-28). Runtime-exposed where the otlp/metrics features are enabled; re-check peer aggregates on the next refresh."
-
-[[audits.wasm-bindgen-shared]]
-criteria = "safe-to-run"
-version = "0.2.129"
-notes = "Fresh release; peer imports carry no certification yet (imports.lock refreshed 2026-09-28). Runtime-exposed where the otlp/metrics features are enabled; re-check peer aggregates on the next refresh."
-
-[[audits.web-sys]]
-criteria = "safe-to-run"
-version = "0.3.106"
-notes = "Fresh release; peer imports carry no certification yet (imports.lock refreshed 2026-09-28). Runtime-exposed where the otlp/metrics features are enabled; re-check peer aggregates on the next refresh."
-
-[[audits.zerocopy]]
-criteria = "safe-to-run"
-version = "0.8.59"
-notes = "Fresh release; peer imports carry no certification yet (imports.lock refreshed 2026-09-28). Runtime-exposed where the otlp/metrics features are enabled; re-check peer aggregates on the next refresh."
-
-[[audits.zerocopy-derive]]
-criteria = "safe-to-run"
-version = "0.8.59"
-notes = "Fresh release; peer imports carry no certification yet (imports.lock refreshed 2026-09-28). Runtime-exposed where the otlp/metrics features are enabled; re-check peer aggregates on the next refresh."
