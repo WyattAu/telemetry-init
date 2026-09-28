@@ -13,7 +13,6 @@
 
 use telemetry_init::{effective_max_level, LogFormat, Telemetry, TelemetryConfig, TelemetryError};
 use tracing::level_filters::LevelFilter;
-use tracing::Subscriber as _;
 
 /// The full bootstrap → double-init → metrics surface → shutdown → drop
 /// lifecycle, in the exact order a service would exercise it.
@@ -87,7 +86,6 @@ fn public_builder_chain_is_fully_chainable() {
 
 #[test]
 fn debug_impl_on_subscriber_result_does_not_panic() {
-    use tracing::Subscriber as _;
     let config = TelemetryConfig::new("dbg-svc");
     let sub = telemetry_init::build_subscriber(&config).expect("build");
     // The whole point of the newtype: unwrap/expect ergonomics compile.
