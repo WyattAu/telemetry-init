@@ -36,7 +36,7 @@ tracing-subscriber = { version = "0.3", default-features = false, features = [
   "env-filter",
   "ansi",
 ] }
-opentelemetry = { version = "0.32", default-features = false, features = [
+opentelemetry = { version = "0.33", default-features = false, features = [
   "trace",
 ], optional = true }
 opentelemetry-otlp = { version = "0.32", default-features = false, features = [
