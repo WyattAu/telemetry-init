@@ -228,14 +228,6 @@ version = "0.13.0"
 criteria = "safe-to-run"
 
 [[exemptions.itertools]]
-version = "0.13.0"
-criteria = "safe-to-run"
-
-[[exemptions.itertools]]
-version = "0.14.0"
-criteria = "safe-to-deploy"
-
-[[exemptions.itertools]]
 version = "0.14.0"
 criteria = "safe-to-deploy"
 
@@ -461,10 +453,6 @@ criteria = "safe-to-deploy"
 
 [[exemptions.synstructure]]
 version = "0.14.0"
-criteria = "safe-to-deploy"
-
-[[exemptions.telemetry-init]]
-version = "0.1.1"
 criteria = "safe-to-deploy"
 
 [[exemptions.thiserror]]
