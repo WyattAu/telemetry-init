@@ -39,7 +39,7 @@ tracing-subscriber = { version = "0.3", default-features = false, features = [
 opentelemetry = { version = "0.32", default-features = false, features = [
   "trace",
 ], optional = true }
-opentelemetry-otlp = { version = "0.32", default-features = false, features = [
+opentelemetry-otlp = { version = "0.33", default-features = false, features = [
   "http-proto",
   "reqwest-blocking-client",
   "trace",
