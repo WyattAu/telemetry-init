@@ -251,8 +251,16 @@ criteria = "safe-to-deploy"
 version = "1.5.0"
 criteria = "safe-to-deploy"
 
+[[exemptions.lazy_static]]
+version = "1.5.1"
+criteria = "safe-to-deploy"
+
 [[exemptions.libc]]
 version = "0.2.189"
+criteria = "safe-to-deploy"
+
+[[exemptions.libc]]
+version = "0.2.190"
 criteria = "safe-to-deploy"
 
 [[exemptions.litemap]]
@@ -273,6 +281,10 @@ criteria = "safe-to-deploy"
 
 [[exemptions.metrics-kit]]
 version = "0.1.0"
+criteria = "safe-to-deploy"
+
+[[exemptions.metrics-kit]]
+version = "0.2.0"
 criteria = "safe-to-deploy"
 
 [[exemptions.mio]]
@@ -489,6 +501,10 @@ criteria = "safe-to-run"
 
 [[exemptions.tokio]]
 version = "1.53.1"
+criteria = "safe-to-deploy"
+
+[[exemptions.tokio]]
+version = "1.53.2"
 criteria = "safe-to-deploy"
 
 [[exemptions.tower]]
