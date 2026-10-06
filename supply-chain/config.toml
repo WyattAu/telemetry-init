@@ -254,10 +254,7 @@ criteria = "safe-to-deploy"
 [[exemptions.lazy_static]]
 version = "1.5.1"
 criteria = "safe-to-deploy"
-<<<<<<< HEAD
-=======
 notes = "Runtime (metrics registry internal). Fresh version; peer certs pending."
->>>>>>> origin/main
 
 [[exemptions.libc]]
 version = "0.2.189"
@@ -266,10 +263,7 @@ criteria = "safe-to-deploy"
 [[exemptions.libc]]
 version = "0.2.190"
 criteria = "safe-to-deploy"
-<<<<<<< HEAD
-=======
 notes = "Runtime. Fresh version; peer certs pending."
->>>>>>> origin/main
 
 [[exemptions.litemap]]
 version = "0.8.3"
@@ -294,10 +288,7 @@ criteria = "safe-to-deploy"
 [[exemptions.metrics-kit]]
 version = "0.2.0"
 criteria = "safe-to-deploy"
-<<<<<<< HEAD
-=======
 notes = "WyattAu estate crate (first-party, published by this org); 0.2.0 adds OpenMetrics/exemplars."
->>>>>>> origin/main
 
 [[exemptions.mio]]
 version = "1.2.3"
@@ -518,10 +509,7 @@ criteria = "safe-to-deploy"
 [[exemptions.tokio]]
 version = "1.53.2"
 criteria = "safe-to-deploy"
-<<<<<<< HEAD
-=======
 notes = "Runtime. Fresh version; peer certs pending."
->>>>>>> origin/main
 
 [[exemptions.tower]]
 version = "0.5.3"
