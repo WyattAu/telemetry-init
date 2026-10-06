@@ -228,14 +228,6 @@ version = "0.13.0"
 criteria = "safe-to-run"
 
 [[exemptions.itertools]]
-version = "0.13.0"
-criteria = "safe-to-run"
-
-[[exemptions.itertools]]
-version = "0.14.0"
-criteria = "safe-to-deploy"
-
-[[exemptions.itertools]]
 version = "0.14.0"
 criteria = "safe-to-deploy"
 
@@ -248,17 +240,9 @@ version = "0.3.106"
 criteria = "safe-to-deploy"
 
 [[exemptions.lazy_static]]
-version = "1.5.0"
-criteria = "safe-to-deploy"
-
-[[exemptions.lazy_static]]
 version = "1.5.1"
 criteria = "safe-to-deploy"
 notes = "Runtime (metrics registry internal). Fresh version; peer certs pending."
-
-[[exemptions.libc]]
-version = "0.2.189"
-criteria = "safe-to-deploy"
 
 [[exemptions.libc]]
 version = "0.2.190"
@@ -279,10 +263,6 @@ criteria = "safe-to-deploy"
 
 [[exemptions.memchr]]
 version = "2.8.3"
-criteria = "safe-to-deploy"
-
-[[exemptions.metrics-kit]]
-version = "0.1.0"
 criteria = "safe-to-deploy"
 
 [[exemptions.metrics-kit]]
@@ -478,10 +458,6 @@ criteria = "safe-to-deploy"
 version = "0.14.0"
 criteria = "safe-to-deploy"
 
-[[exemptions.telemetry-init]]
-version = "0.1.1"
-criteria = "safe-to-deploy"
-
 [[exemptions.thiserror]]
 version = "2.0.21"
 criteria = "safe-to-deploy"
@@ -501,10 +477,6 @@ criteria = "safe-to-deploy"
 [[exemptions.tinytemplate]]
 version = "1.2.1"
 criteria = "safe-to-run"
-
-[[exemptions.tokio]]
-version = "1.53.1"
-criteria = "safe-to-deploy"
 
 [[exemptions.tokio]]
 version = "1.53.2"
