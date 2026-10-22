@@ -493,17 +493,23 @@ mod tests {
 
     #[test]
     fn build_subscriber_smoke_pretty() {
-        let cfg = TelemetryConfig::new("svc").log_format(LogFormat::Pretty);
-        let subscriber = build_subscriber(&cfg).unwrap();
-        assert_eq!(subscriber.max_level_hint(), Some(LevelFilter::INFO));
+        // Pin the env: parallel env-mutating tests race an ambient
+        // RUST_LOG past this point otherwise.
+        with_rust_log(None, || {
+            let cfg = TelemetryConfig::new("svc").log_format(LogFormat::Pretty);
+            let subscriber = build_subscriber(&cfg).unwrap();
+            assert_eq!(subscriber.max_level_hint(), Some(LevelFilter::INFO));
+        });
     }
 
     #[cfg(feature = "json")]
     #[test]
     fn build_subscriber_smoke_json() {
-        let cfg = TelemetryConfig::new("svc");
-        let subscriber = build_subscriber(&cfg).unwrap();
-        assert_eq!(subscriber.max_level_hint(), Some(LevelFilter::INFO));
+        with_rust_log(None, || {
+            let cfg = TelemetryConfig::new("svc");
+            let subscriber = build_subscriber(&cfg).unwrap();
+            assert_eq!(subscriber.max_level_hint(), Some(LevelFilter::INFO));
+        });
     }
 
     #[test]
