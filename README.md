@@ -1,4 +1,5 @@
 # telemetry-init
+[![Estate integration](https://github.com/WyattAu/estate-integration/actions/workflows/ci.yml/badge.svg)](https://github.com/WyattAu/estate-integration/actions/workflows/ci.yml)
 
 One-call observability bootstrap for Rust: the shared init pattern of the
 WyattAu estate, wiring **logs** (`tracing_subscriber`), **metrics**
