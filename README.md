@@ -1,6 +1,6 @@
 # telemetry-init
 
-One-call observability bootstrap for Rust — the shared init pattern of the
+One-call observability bootstrap for Rust: the shared init pattern of the
 WyattAu estate, wiring **logs** (`tracing_subscriber`), **metrics**
 (`metrics-kit`), and **traces** (`opentelemetry-otlp`) in a single fallible
 call instead of six hand-rolled dialects of the same 40–80 lines.
@@ -10,7 +10,7 @@ call instead of six hand-rolled dialects of the same 40–80 lines.
 - **Logs**: `EnvFilter` from the configured directive with `RUST_LOG`
   override, JSON by default (`json` feature), human format for local dev.
 - **Metrics**: a lock-free `metrics-kit::Registry` with a cardinality
-  budget, handed to you as an `Arc` — no hidden globals.
+  budget, handed to you as an `Arc`: no hidden globals.
 - **Traces** (`otlp` feature): OTLP/HTTP exporter wired as a
   `tracing-opentelemetry` layer with `service.name` / `service.version`
   resource attributes and parent-based ratio sampling.
@@ -66,13 +66,13 @@ let telemetry = Telemetry::init(
 ```
 
 Spans export over OTLP/HTTP (protobuf, batched); the endpoint is trusted
-infrastructure — point it at your collector, not the public internet.
+infrastructure: point it at your collector, not the public internet.
 
 ## The config surface
 
 | Builder call | Default | Notes |
 |---|---|---|
-| `new("service-name")` | — | required; becomes `service.name` |
+| `new("service-name")` |none|| required; becomes `service.name` |
 | `.version("1.2.3")` | `"0.0.0"` | becomes `service.version` |
 | `.log_level("info")` | `"info"` | any `env-filter` directive; `RUST_LOG` wins |
 | `.log_format(LogFormat::Json)` | `Json` | `Json` needs the `json` feature |
@@ -95,7 +95,7 @@ infrastructure — point it at your collector, not the public internet.
 
 `otelkit` v2 exposes a whole-subscriber init: it installs its own global
 subscriber and returns a flush guard, so it cannot compose as a layer inside
-this crate's single subscriber — and its OTLP path ignores the log format and
+this crate's single subscriber: and its OTLP path ignores the log format and
 `RUST_LOG`. telemetry-init wires `opentelemetry-otlp` +
 `tracing-opentelemetry` directly to keep one code path for every feature
 combination.

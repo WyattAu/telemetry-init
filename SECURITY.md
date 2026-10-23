@@ -1,4 +1,4 @@
-# Security Policy — telemetry-init
+# Security Policy: telemetry-init
 
 ## Supported versions
 
@@ -29,7 +29,7 @@ Security considerations for integrators:
   spans (with resource attributes) unauthenticated; bind your collector on
   an internal interface and use network policy or a sidecar for auth.
 - **Sampling is not redaction.** `sample_rate` limits volume, not
-  content — sampled-in spans carry everything their spans contain.
+  content: sampled-in spans carry everything their spans contain.
 - **Cardinality guard.** The metrics registry's series budget bounds the
   blast radius of label explosions; keep request-controlled values out of
   label sets regardless.
@@ -38,7 +38,7 @@ Security considerations for integrators:
   `TelemetryError::AlreadyInitialized` instead of panicking, so a
   misconfigured double bootstrap cannot be used to replace or shadow the
   logging stack.
-- `#![forbid(unsafe_code)]` — no unsafe blocks exist in this crate.
+- `#![forbid(unsafe_code)]`: no unsafe blocks exist in this crate.
 
 [GitHub security advisories]:
     https://github.com/WyattAu/telemetry-init/security/advisories/new
