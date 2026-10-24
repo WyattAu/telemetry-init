@@ -3,6 +3,23 @@
 All notable changes to this project are documented here. Format: [Keep a
 Changelog](https://keepachangelog.com/): versions follow [semver](https://semver.org).
 
+## [1.0.0] - 2026-10-24
+
+### Declared stable
+
+First 1.0. `telemetry-init` bootstraps production observability; this release commits the one-call init, the estate defaults, and the feature surface (metrics, json, otlp) as API-stable.
+
+### Guarantees from here on
+
+- Breaking changes to public items require a minor bump plus a `#[deprecated]`
+  window of at least one minor release.
+- MSRV bumps are minor releases, not patch releases.
+- `#![deny(missing_docs)]` and `#![forbid(unsafe_code)]` are enforced.
+
+### Explicitly not guaranteed
+
+- Default sampling and batching parameters may be tuned in minors when the estate's own dashboards say they should be.
+
 ## [0.1.1] - 2026-09-28
 
 ### Added

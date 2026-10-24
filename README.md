@@ -115,6 +115,13 @@ Init is a startup cost, measured as a smoke benchmark
 filter-parse + layer assembly, microseconds-class; the metrics hot path is
 metrics-kit's lock-free recording (see its README for the measured numbers).
 
+## Stability
+
+`telemetry-init` is 1.0. Breaking changes require a minor bump and a `#[deprecated]`
+window of at least one minor release; MSRV bumps are minor releases, never
+patch releases. See the changelog for the short list of explicitly
+non-contractual behaviours.
+
 ## License
 
 Licensed under either of [Apache-2.0](LICENSE-APACHE) or [MIT](LICENSE-MIT)
