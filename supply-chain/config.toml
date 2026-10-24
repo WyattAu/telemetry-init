@@ -435,6 +435,10 @@ version = "1.53.2"
 criteria = "safe-to-deploy"
 notes = "Runtime. Fresh version; peer certs pending."
 
+[[exemptions.tokio]]
+version = "1.54.1"
+criteria = "safe-to-deploy"
+
 [[exemptions.tower]]
 version = "0.5.3"
 criteria = "safe-to-deploy"
